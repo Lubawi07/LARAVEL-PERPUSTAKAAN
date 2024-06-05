@@ -52,13 +52,20 @@ Route::put('/kategori/{id}', [KategoriController::class,'update']);
 Route::get('/kategori/{id}', [KategoriController::class, 'destroy'] );
 
 
+// Buku
+Route::get('/buku', [BukuController::class, 'index'])->name('buku');
+Route::get('/buku/tambah-data', [BukuController::class,'add'])->name('buku/tambah-data');
+Route::post('/buku/store', [BukuController::class,'store'])->name('buku/store');
+Route::get('/buku/{id}/edit', [BukuController::class,'edit']);
+Route::put('/buku/{id}', [BukuController::class,'update'])->name('buku/{id}');
+Route::get('buku/{id}', [BukuController::class, 'destroy']);
+
+Route::get('/edit-buku', function () {
+    return view('buku.editbuku');
+});
 
 // Route::apiResource('kategori', [KategoriController::class]);
 
-
-Route::get('/buku', function () {
-    return view('buku.books');
-});
 
 
 
