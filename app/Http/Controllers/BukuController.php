@@ -34,7 +34,7 @@ class BukuController extends Controller
                 "stok" => "required",
                 "tahun_terbit" => "required",
                 "sinopsis" => "required",
-                "gambar"=> "required",
+                "gambar"=> "required|image|mimes:jpeg,png,jpg|max:2048",
             ],[
                 "kode.required"=> "Isi kode nya",
                 "judul.required"=> "Isi namanya",
@@ -47,8 +47,21 @@ class BukuController extends Controller
                 "tahun_terbit.required"=> "Isi tahun terbitnya",
                 "sinopsis.required"=> "Isi sinopsisnya",
                 "gambar.required"=> "Isi gambarnya",
+                "gambar.image"=>"File harus bertipe gambar",
+                "gambar.mimes" => "Format gambar harus jpeg, png, dan jpg",
+                "gambar.max"  => "Ukuran maksimal 2 MB",
             ]
         ));
+
+
+        if ($request->hasFile('gambar'))
+        {
+            $imagePath  = $request->file('gambar')->store('images', 'public');
+            $validatedData['gambar'] = $imagePath;
+        }
+
+        \App\Models\Buku::create($validatedData);
+
         session()->flash("success","Data berhasil ditambah");
         return redirect("buku");
     }

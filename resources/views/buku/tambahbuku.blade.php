@@ -22,7 +22,6 @@
                         <div class="modal-body">
                             <form action="{{ route('buku/store') }}" method="POST">
                               @csrf
-
                               <div class="form-group">
                                   <label for="kode">Kode</label>
                                   <input type="text" name="kode" id="kode" class="form-control">

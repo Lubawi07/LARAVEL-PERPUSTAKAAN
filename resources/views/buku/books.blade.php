@@ -76,7 +76,9 @@
                                         <td>{{ $item->stok }}</td>
                                         <td>{{ $item->tahun_terbit }}</td>
                                         <td>{{ $item->sinopsis }}</td>
-                                        <td>{{ $item->gambar }}</td>
+                                        <td>@if ($item->gambar)
+                                            <img src="{{ asset('storage/'. $item->gambar) }}" alt="Gambar Buku" style="max-width:100%; height:auto">
+                                        @endif</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>
                                         <td>

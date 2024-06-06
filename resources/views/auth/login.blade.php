@@ -38,19 +38,35 @@
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
+                                    {{-- isi sini  --}}
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat datang kembali!</h1>
                                     </div>
-                                    <form class="user" action="{{ route('login-proses') }}" method="POST">
+                                    <form action="{{ route('login-proses') }}" class="user" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Masukkan alamat email">
+                                                id="email" aria-describedby="emailHelp"
+                                                placeholder="Masukkan alamat email" value="{{ Session::get('email') }}">
+                                                @error('email')
+                                                <small>
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $message }}
+                                                  </div>
+                                                </small>
+                                                 @enderror
                                         </div>
+
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="password" placeholder="Password" value="{{ Session::get('password') }}">
+                                                @error('password')
+                                                <small>
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{ $message }}
+                                                      </div>
+                                                </small>
+                                                @enderror
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -58,16 +74,16 @@
                                                 <label class="custom-control-label" for="customCheck">Ingatkan Saya</label>
                                             </div>
                                         </div>
-                                        <a type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="/lupa-password">Lupa Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="/daftar">Buat Akun!</a>
+                                        <a class="small" href="{{ route('register') }}">Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +106,30 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Sweet Alert 2 sesi login gagal  --}}
+    @if ($message = Session::get('failed'))
+        <script>
+            Swal.fire({
+            title: "Error nih",
+            text: "{{ $message }}",
+            icon: "error",
+            });
+        </script>
+    @endif
+        {{-- Sweet Alert 2 sesi logout berhasil  --}}
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+            title: "Berhasil",
+            text: "{{ $message }}",
+            showConfirmButton : false,
+            icon: "success",
+            timer : 2000
+            });
+        </script>
+    @endif
 
 </body>
 
