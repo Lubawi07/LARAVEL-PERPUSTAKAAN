@@ -15,6 +15,7 @@ class KategoriController extends Controller
         // dd($kategori->all());
         // compact digunakan untuk mengirim data ke tampilan blade
         return view("kategori.index", compact("kategori"));
+        // return response()->json([$kategori]);
     }
 
 

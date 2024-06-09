@@ -14,14 +14,18 @@ class Buku extends Model
         "kode",
         "judul",
         "kategori_id",
-        "penerbit_id",
+        "penerbit",
         "isbn",
         "pengarang",
         "jumlah_halaman",
-        "stok",
         "tahun_terbit",
         "sinopsis",
-        "gambar"
+        // "gambar"
     ];
+
+    public function bukus()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
 
 }

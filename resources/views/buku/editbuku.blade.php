@@ -25,46 +25,88 @@
                                 <label for="kode">Kode</label>
                                 <input type="text" name="kode" id="kode" class="form-control" value="{{ $buku->kode }}">
                             </div>
+                            @error('kode')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
                                 <label for="judul">Judul</label>
                                 <input type="text" name="judul" id="judul" class="form-control" value="{{ $buku->judul }}">
                             </div>
-                            <div class="form-group">
-                                <label for="kategori_id">Kategori_id</label>
-                                <input type="number" name="kategori_id" id="kategori_id" class="form-control" value="{{ $buku->kategori_id }}">
+                            @error('judul')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
+                              <div class="form-group">
+                                <label for="kategori_id">Kategori</label>
+                                <select class="form-control" id="selectOption" name="kategori_id" id="kategori_id">
+                                  <option value="">--Isi Kategorinya--</option>
+                                  @foreach ($kategori as $item)
+                                  <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                  @endforeach
+                                </select>
                             </div>
+                            @error('kategori_id')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
-                                <label for="penerbit_id">Penerbit_id</label>
-                                <input type="number" name="penerbit_id" id="penerbit_id" class="form-control" value="{{ $buku->penerbit_id }}">
+                                <label for="penerbit">Penerbit</label>
+                                <input type="text" name="penerbit" id="penerbit" class="form-control" value="{{ $buku->penerbit }}">
                             </div>
+                            @error('penerbit')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
                                 <label for="isbn">ISBN</label>
                                 <input type="text" name="isbn" id="isbn" class="form-control" value="{{ $buku->isbn }}">
                             </div>
+                            @error('isbn')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
                                 <label for="pengarang">Pengarang</label>
                                 <input type="text" name="pengarang" id="pengarang" class="form-control" value="{{ $buku->pengarang }}">
                             </div>
+                            @error('pengarang')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
-                                <label for="jumlah_halaman">Jumlah_halaman</label>
+                                <label for="jumlah_halaman">Jumlah_Halaman</label>
                                 <input type="number" name="jumlah_halaman" id="jumlah_halaman" class="form-control" value="{{ $buku->jumlah_halaman }}">
                             </div>
+                            @error('jumlah_halaman')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
-                                <label for="jumlah_halaman">Stok</label>
-                                <input type="number" name="stok" id="stok" class="form-control" value="{{ $buku->stok }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="tahun_terbit">Tahun_terbit</label>
+                                <label for="tahun_terbit">Tahun_Terbit</label>
                                 <input type="number" name="tahun_terbit" id="tahun_terbit" class="form-control" value="{{ $buku->tahun_terbit }}">
                             </div>
+                            @error('tahun_terbit')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                             <div class="form-group">
                                 <label for="sinopsis">Sinopsis</label>
                                 <input type="text" name="sinopsis" id="sinopsis" class="form-control" value="{{ $buku->sinopsis }}">
                             </div>
-                            <div class="form-group">
-                                <label for="gambar">Gambar</label>
-                                <input type="file" name="gambar" id="gambar" class="form-control" value="{{ $buku->gambar }}">
-                            </div>
+                            @error('sinopsis')
+                              <div class="alert alert-danger" role="alert">
+                                {{ $message }}
+                              </div>
+                              @enderror
                               <div class="modal-footer">
                                 <button class="btn btn-warning" type="submit">
                                     <i class="fas fa-save"></i>

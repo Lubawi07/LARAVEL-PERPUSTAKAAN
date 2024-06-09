@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard/admin') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             {{-- <i class="fas fa-laugh-wink"></i> --}}
             <i class="fas fa-book-open"></i>
@@ -42,6 +42,7 @@
                 <h6 class="collapse-header">Master</h6>
                 <a class="collapse-item" href="/kategori">Kategori</a>
                 <a class="collapse-item" href="/buku">Buku</a>
+                <a class="collapse-item" href="/perpus/buku">Perpus Buku</a>
             </div>
         </div>
     </li>
@@ -54,6 +55,7 @@
         User
     </div>
 
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -63,27 +65,38 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Semua data:</h6>
-                <a class="collapse-item" href="login.html">Admin</a>
-                <a class="collapse-item" href="login.html">Petugas</a>
-                <a class="collapse-item" href="login.html">User</a>
+                <h6 class="collapse-header">Semua data :</h6>
+                <a class="collapse-item" href="/data/admin">Admin</a>
+                <a class="collapse-item" href="/data/petugas">Petugas</a>
+                <a class="collapse-item" href="/data/user">User</a>
             </div>
         </div>
     </li>
 
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+            Data request
+        </div>
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('peminjaman') }}">
+            <i class="fas fa-handshake"></i>
+            <span>Peminjaman</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('pengembalian') }}">
+            <i class="fas fa-hand-holding-heart"></i>
+            <span>Pengembalian</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/infowebsite">
             <i class="fas fa-solid fa-info"></i>
             <span>Info Website</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-solid fa-database"></i>
-            <span>Data Peminjaman</span></a>
-    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

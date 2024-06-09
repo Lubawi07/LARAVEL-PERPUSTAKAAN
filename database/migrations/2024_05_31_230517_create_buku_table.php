@@ -17,15 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->string('judul');
-            $table->integer('kategori_id');
-            $table->integer('penebit_id');
+            $table->foreignId('kategori_id')->constrained('category');
+            $table->string('penerbit');
             $table->string('isbn')->nullable();
             $table->string('pengarang');
             $table->integer('jumlah_halaman');
-            $table->integer('stok');
-            $table->integer('tahun_terbit');
+            $table->year('tahun_terbit');
             $table->text('sinopsis');
-            $table->string('gambar');
             $table->timestamps();
         });
     }

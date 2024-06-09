@@ -43,20 +43,19 @@
                             </a>
                             <div class="table-responsive" >
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead style="width: 10%">
+                                    <thead class="thead-dark" style="width: 10%">
                                         <tr>
-                                            <th>Id</th>
+                                            <th>No</th>
                                             <th>Kode</th>
                                             <th>Judul</th>
-                                            <th>Kategori_id</th>
-                                            <th>Penerbit_id</th>
-                                            <th>isbn</th>
+                                            <th>Kategori</th>
+                                            <th>Penerbit</th>
+                                            <th>ISBN</th>
                                             <th>Pengarang</th>
-                                            <th>Jumlah_halaman</th>
-                                            <th>Stok</th>
-                                            <th>Tahun_terbit</th>
+                                            <th>Jumlah_Halaman</th>
+                                            <th>Tahun_Terbit</th>
                                             <th>Sinopsis</th>
-                                            <th>Gambar</th>
+                                            {{-- <th>Gambar</th> --}}
                                             <th>Dibuat</th>
                                             <th>Diupdate</th>
                                             <th>Aksi</th>
@@ -69,16 +68,15 @@
                                         <td>{{ $item->kode }}</td>
                                         <td>{{ $item->judul }}</td>
                                         <td>{{ $item->kategori_id }}</td>
-                                        <td>{{ $item->penerbit_id }}</td>
+                                        <td>{{ $item->penerbit}}</td>
                                         <td>{{ $item->isbn }}</td>
                                         <td>{{ $item->pengarang }}</td>
                                         <td>{{ $item->jumlah_halaman }}</td>
-                                        <td>{{ $item->stok }}</td>
                                         <td>{{ $item->tahun_terbit }}</td>
                                         <td>{{ $item->sinopsis }}</td>
-                                        <td>@if ($item->gambar)
+                                        {{-- <td>@if ($item->gambar)
                                             <img src="{{ asset('storage/'. $item->gambar) }}" alt="Gambar Buku" style="max-width:100%; height:auto">
-                                        @endif</td>
+                                        @endif</td> --}}
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>
                                         <td>

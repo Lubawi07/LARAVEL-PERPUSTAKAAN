@@ -23,7 +23,7 @@ class SessionController extends Controller
         Session::flash("password", $request->password);
         // dd($request->all());
         $request->validate([
-            "email" => "required",
+            "email" => "required|email",
             "password" => "required",
         ],[
             "email.required"=> "Isi emailnya dulu",
@@ -37,8 +37,8 @@ class SessionController extends Controller
 
        if(Auth::attempt($infologin)){
         // Autentikasi berhasil
-        Session::flash("success-login", "Berhasil Login");
-            return redirect()->route("dashboard/admin");
+        // Session::flash("success-login", "Berhasil Login");
+            return redirect()->route("dashboard/admin")->with("success-login"," Kamu berhasil login");
        }else{
         // Autentikasi gagal
         return redirect()->route("login")->with("failed","Email atau password salah");
@@ -67,7 +67,14 @@ class SessionController extends Controller
             "nama" => 'required',
             'email' => 'required|email|unique:users,email,',
             'password' => 'required|min:6'
-        ]);
+        ],[
+            "nama.required" =>  "isi namanya dulu",
+            "email.required" => "Isi emailnya dulu",
+            "email.unique" => "Silahkan gunakan email yang lain",
+            "password.required" => "Isi passwordnya dulu",
+            "password.min"=> "Isi password dengan 6 karakter",
+        ]
+    );
 
 
         $data['name'] = $request->nama;
@@ -83,8 +90,9 @@ class SessionController extends Controller
 
        if(Auth::attempt($login)){
         // Autentikasi berhasil
-        Session::flash("success-login", "Berhasil Login");
-            return redirect()->route("dashboard/admin");
+        Session::flash("success-register", "Berhasil masuk");
+        // jika diarahkan ke dashboard/admin itu tidak logis maka harus diarahkan ke route login untuk langsung ditest input email beserta passwordnya
+        return redirect()->route("dashboard/admin");
        }else{
         // Autentikasi gagal
         return redirect()->route("login")->with("failed","Email atau password salah");

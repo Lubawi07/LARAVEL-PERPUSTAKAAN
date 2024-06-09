@@ -77,7 +77,7 @@
                 <div class="modal-body">Apa kamu yakin ingin logout ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="/logout">Logout</a>
+                    <a class="btn btn-danger" href="/logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -109,6 +109,32 @@
             $('#modal-tambah').modal().show();
         @endif
     </script>
+
+        {{-- Sweet Alert 2 sukses login --}}
+        @if ($message = Session::get('success-login'))
+        <script>
+            Swal.fire({
+            title: "Berhasil",
+            text: "{{ $message }}",
+            showConfirmButton : false,
+            icon: "success",
+            timer : 2000
+            });
+        </script>
+        @endif
+
+        {{-- Sweet Alert 2 sukses masuk --}}
+        @if ($message = Session::get('success-register'))
+        <script>
+            Swal.fire({
+            title: "Berhasil",
+            text: "{{ $message }}",
+            showConfirmButton : false,
+            icon: "success",
+            timer : 2000
+            });
+        </script>
+        @endif
 </body>
 
 </html>
