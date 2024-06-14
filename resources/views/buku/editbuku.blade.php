@@ -22,6 +22,15 @@
                               @csrf
                               @method('put')
                               <div class="form-group">
+                                <label for="gambar">Cover Buku</label>
+                                <input type="file" name="gambar" id="gambar" class="form-control">
+                            </div>
+                            @error('gambar')
+                            <div class="alert alert-danger" role="alert">
+                              {{ $message }}
+                            </div>
+                            @enderror
+                              <div class="form-group">
                                 <label for="kode">Kode</label>
                                 <input type="text" name="kode" id="kode" class="form-control" value="{{ $buku->kode }}">
                             </div>

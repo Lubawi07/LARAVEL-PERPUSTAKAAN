@@ -46,6 +46,7 @@
                                     <thead class="thead-dark" style="width: 10%">
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
                                             <th>Kode</th>
                                             <th>Judul</th>
                                             <th>Kategori</th>
@@ -55,7 +56,6 @@
                                             <th>Jumlah_Halaman</th>
                                             <th>Tahun_Terbit</th>
                                             <th>Sinopsis</th>
-                                            {{-- <th>Gambar</th> --}}
                                             <th>Dibuat</th>
                                             <th>Diupdate</th>
                                             <th>Aksi</th>
@@ -65,6 +65,7 @@
                                     @foreach ($buku as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td> <img src="{{ asset('bukuperpus/' . $item->gambar) }}" alt="Gambar Buku" style="max-width: 100px;"></td>
                                         <td>{{ $item->kode }}</td>
                                         <td>{{ $item->judul }}</td>
                                         <td>{{ $item->kategori_id }}</td>
@@ -74,9 +75,6 @@
                                         <td>{{ $item->jumlah_halaman }}</td>
                                         <td>{{ $item->tahun_terbit }}</td>
                                         <td>{{ $item->sinopsis }}</td>
-                                        {{-- <td>@if ($item->gambar)
-                                            <img src="{{ asset('storage/'. $item->gambar) }}" alt="Gambar Buku" style="max-width:100%; height:auto">
-                                        @endif</td> --}}
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>
                                         <td>

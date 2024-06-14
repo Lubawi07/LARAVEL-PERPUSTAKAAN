@@ -14,7 +14,7 @@
                     <p class="mb-4">Data untuk mengelola peminjaman</p>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Admin</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Peminjaman</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -22,10 +22,8 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Dipinjam oleh:</th>
                                             <th>Tanggal_Peminjaman</th>
-                                            <th>Dikembalikan_Tanggal</th>
-                                            <th>Status</th>
-                                            <th>User ID</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

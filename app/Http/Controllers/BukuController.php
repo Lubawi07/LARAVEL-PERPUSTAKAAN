@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,9 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        \App\Models\Buku::create($request->validate(
+        $buku = Buku::create($request->validate(
             [
+                "gambar" => "required",
                 "kode" => "required",
                 "judul" => "required",
                 "kategori_id" => "required",
@@ -38,6 +40,7 @@ class BukuController extends Controller
                 "tahun_terbit" => "required",
                 "sinopsis" => "required",
             ],[
+                "gambar.required"=> "Isi gambarnya",
                 "kode.required"=> "Isi kode nya",
                 "judul.required"=> "Isi judulnya",
                 "kategori_id.required"=> "Isi kategorinya",
@@ -50,6 +53,12 @@ class BukuController extends Controller
             ]
         ));
 
+        // Untuk menambahkan gambar
+        if($request->hasFile("gambar")){
+            $request->file("gambar")->move("bukuperpus/", $request->file("gambar")->getClientOriginalName());
+            $buku->gambar = $request->file('gambar')->getClientOriginalName();
+            $buku->save();
+        }
         session()->flash("success","Data berhasil ditambah");
         return redirect("buku");
     }
@@ -64,6 +73,7 @@ class BukuController extends Controller
     public function update(Request $request, $id)
     {
         $buku = \App\Models\Buku::find($id);
+        $buku->gambar = $request->gambar;
         $buku->kode = $request->kode;
         $buku->judul = $request->judul;
         $buku->kategori_id = $request->kategori_id;
@@ -75,6 +85,7 @@ class BukuController extends Controller
         $buku->sinopsis = $request->sinopsis;
         $buku->update($request->validate(
             [
+                "gambar"=> "required",
                 "kode" => "required",
                 "judul" => "required",
                 "kategori_id" => "required",
@@ -85,6 +96,7 @@ class BukuController extends Controller
                 "tahun_terbit" => "required",
                 "sinopsis" => "required",
             ],[
+                "gambar.required"=> "Isi gambarnya",
                 "kode.required"=> "Isi kode nya",
                 "judul.required"=> "Isi judulnya",
                 "kategori_id.required"=> "Isi kategorinya",
@@ -123,8 +135,7 @@ class BukuController extends Controller
 
     public function detailbuku($id)
     {
-        $kategori = Kategori::all();
         $buku = \App\Models\Buku::find($id);
-        return view ("user.detailbuku", compact("kategori","buku"));
+        return view ("user.detailbuku", compact("buku"));
     }
 }

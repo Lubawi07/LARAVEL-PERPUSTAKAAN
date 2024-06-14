@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('tittle', 'Buku')
+@section('tittle', 'Perpus Buku')
 
 @section('content')
     <!-- Main Content -->
@@ -14,7 +14,7 @@
             <div class="card-container" style="display: flex; flex-wrap: wrap; gap: 10px;">
                 @foreach ($buku as $item )
                 <div class="card" style="width: 18rem; margin: 10px;">
-                    <img src="{{ asset('img/romeo.jpg') }}" class="card-img-top" alt="Judul" style="width: 150px; height: auto; margin: 0 auto; display: block;">
+                    <img src="{{ asset('bukuperpus/'.$item->gambar) }}" class="card-img-top" alt="{{ $item->gambar }}" style="width: 150px; height: auto; margin: 0 auto; display: block;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->judul }}</h5>
                         <p class="card-text">{{ $item->penerbit }}</p>

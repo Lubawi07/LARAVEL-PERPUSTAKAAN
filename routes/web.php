@@ -71,7 +71,16 @@ Route::get('/detail/buku/{id}', [BukuController::class, 'detailbuku']);
 
 // Halaman dashboard
 // Fungsi middleware('auth') digunakan untuk memproteksikan semua pengguna agar tidak bisa langsung masuk melainkan harus login terlebih dahulu
+
+// Route::group(['middleware' => ['role:petugas']], function () {
+//     Route::get('/dashboard/admin', [AdminController::class,'index'])->name('dashboard/admin');
+// });
+
 Route::get('/dashboard/admin', [AdminController::class,'index'])->name('dashboard/admin')->middleware('auth');
+// Halaman profile
+Route::get('/halaman-profile', function () {
+    return view('profile.profiles');
+});
 
 // Halaman login
 Route::get('/login', [SessionController::class,'index'])->name('login');

@@ -11,6 +11,7 @@ class Buku extends Model
     protected $table = "buku";
 
     protected $fillable = [
+        "gambar",
         "kode",
         "judul",
         "kategori_id",
@@ -19,8 +20,7 @@ class Buku extends Model
         "pengarang",
         "jumlah_halaman",
         "tahun_terbit",
-        "sinopsis",
-        // "gambar"
+        "sinopsis"
     ];
 
     public function bukus()

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
+            $table->string('gambar');
             $table->string('kode');
             $table->string('judul');
             $table->foreignId('kategori_id')->constrained('category');

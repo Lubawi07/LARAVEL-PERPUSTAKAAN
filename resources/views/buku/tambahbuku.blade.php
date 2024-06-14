@@ -20,8 +20,17 @@
                             <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('buku/store') }}" method="POST">
+                            <form action="{{ route('buku/store') }}" method="POST" enctype="multipart/form-data">
                               @csrf
+                            <div class="form-group">
+                                <label for="gambar">Cover Buku</label>
+                                <input type="file" name="gambar" id="gambar" class="form-control"  value="{{ old('gambar') }}">
+                            </div>
+                            @error('gambar')
+                            <div class="alert alert-danger" role="alert">
+                              {{ $message }}
+                            </div>
+                            @enderror
                               <div class="form-group">
                                   <label for="kode">Kode</label>
                                   <input type="text" name="kode" id="kode" class="form-control"  value="{{ old('kode') }}">
