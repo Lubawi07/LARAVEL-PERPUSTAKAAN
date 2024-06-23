@@ -17,8 +17,8 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
+                                <thead class="thead-dark">
+                                    <tr class="text-center">
                                         <th>Id</th>
                                         <th>Dikembalikan oleh:</th>
                                         <th>Tanggal_Pengembalian</th>

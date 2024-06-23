@@ -49,8 +49,11 @@
                 </div>
                 <div class="button-container" style="margin-top: 40px"> <!-- Menambah margin-top -->
                     <a class="btn btn-secondary" href="/perpus/buku"  >Kembali</a>
-                    <button class="btn btn-sm btn-success" type="button" data-target="#modal-pinjam" data-toggle="modal">Pinjam Buku</button>
-
+                    <form action="{{ route('peminjaman-proses') }}" method="POST">
+                        @csrf
+                        {{-- <input type="hidden" name="book_id" value="{{ $buku->id }}"> --}}
+                        <button class="btn btn-success" name="book_id" type="submit" value="{{ $buku->id }}">Pinjam Buku</button>
+                    </form>
                 </div>
                 </div>
                 <!-- /.container-fluid -->

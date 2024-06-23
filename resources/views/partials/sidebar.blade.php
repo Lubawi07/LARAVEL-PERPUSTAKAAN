@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard/admin') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             {{-- <i class="fas fa-laugh-wink"></i> --}}
             <i class="fas fa-book-open"></i>
@@ -15,11 +15,30 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('dashboard/admin') }}" >
+        <a class="nav-link" href="{{ route('dashboard') }}" >
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
+    <!-- Divider -->
+
+
+    @role('user')
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Perpus Buku
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/perpus/buku">
+            <i class="fas fa-book"></i>
+            <span>Buku</span></a>
+    </li>
+    @endrole
+
+
+    @role('admin')
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -29,6 +48,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -42,11 +62,13 @@
                 <h6 class="collapse-header">Master</h6>
                 <a class="collapse-item" href="/kategori">Kategori</a>
                 <a class="collapse-item" href="/buku">Buku</a>
-                <a class="collapse-item" href="/perpus/buku">Perpus Buku</a>
             </div>
         </div>
     </li>
+    @endrole
 
+
+    @role('admin')
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -54,9 +76,8 @@
     <div class="sidebar-heading">
         User
     </div>
-
-
     <!-- Nav Item - Pages Collapse Menu -->
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
@@ -66,16 +87,19 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Semua data :</h6>
-                <a class="collapse-item" href="/data/admin">Admin</a>
+                <a class="collapse-item" href="{{ route('/data/admin') }}">Admin</a>
                 <a class="collapse-item" href="/data/petugas">Petugas</a>
                 <a class="collapse-item" href="/data/user">User</a>
             </div>
         </div>
     </li>
+    @endrole
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+    @hasrole('petugas')
+    
     <div class="sidebar-heading">
             Data request
         </div>
@@ -90,6 +114,27 @@
             <i class="fas fa-hand-holding-heart"></i>
             <span>Pengembalian</span></a>
     </li>
+    @endhasrole
+
+
+
+    @hasrole('user')
+    <div class="sidebar-heading">
+        Histori buku
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="/histori">
+            <i class="fas fa-history"></i>
+            <span>Histori</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    @endhasrole
+
+
+
+    <div class="sidebar-heading">
+        Info Website Kami
+    </div>
     <li class="nav-item">
         <a class="nav-link" href="/infowebsite">
             <i class="fas fa-solid fa-info"></i>

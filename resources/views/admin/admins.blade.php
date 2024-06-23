@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 
-@section('tittle', 'Dashboard Admin')
+@section('tittle', 'Dashboard')
 @section('content')
     <!-- Main Content -->
             <div id="content">
@@ -28,6 +28,7 @@
                                     {{ session('success-register') }}
                                   </div>
                                 @endif
+                                <p>Jangan berikan username dan password pada siapapun</p>
                             </div>
                         </div>
                     </div>

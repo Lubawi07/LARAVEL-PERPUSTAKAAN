@@ -8,6 +8,18 @@
         {{-- Topbar --}}
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        {{-- Ketika buku berhasil dipinjam --}}
+            @if (session('sukses-pinjam'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('sukses-pinjam') }}
+                    </div>
+             @endif
+        {{-- Ketika buku gagal dipinjam --}}
+            @if (session('eror-pinjam'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('eror-pinjam') }}
+                    </div>
+             @endif
             {{-- isi kontennya --}}
             <h1 class="h3 mb-2 text-gray-800">Buku</h1>
             <p class="mb-4">Silahkan pilih buku yang ingin dipinjam</p>
@@ -18,10 +30,15 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->judul }}</h5>
                         <p class="card-text">{{ $item->penerbit }}</p>
-                        <button class="btn btn-sm btn-success" type="button" data-target="#modal-pinjam" data-toggle="modal">Pinjam Buku</button>
-                        <a class="btn btn-sm btn-primary" type="button" href="/detail/buku/{{ $item->id }}" >
-                            Detail Buku
-                        </a>
+                        <form action="{{ route('peminjaman-proses') }}" method="POST">
+                            @csrf
+                            {{-- <input type="hidden" name="book_id" value="{{ $buku->id }}"> --}}
+                            <button class="btn btn-sm btn-success" name="book_id" type="submit" value="{{ $item->id }}">Pinjam Buku</button>
+                            <a class="btn btn-sm btn-primary" type="button" href="/detail/buku/{{ $item->id }}" >
+                                Detail Buku
+                            </a>
+                        </form>
+
                     </div>
                 </div>
                 @endforeach

@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('anggota', function (Blueprint $table) {
+        Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
-            $table->string('nama');
-            $table->enum('jenis_kelamin', ['L','P']);
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->string('telepon');
-            $table->text('alamat');
-            $table->string('foto');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('book_id')->constrained('buku');
+            // $table->date('tanggal_pinjam');
+            // $table->enum('status', ['sudah kembali','belum kembali']);
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggota');
+        Schema::dropIfExists('peminjaman');
     }
 };

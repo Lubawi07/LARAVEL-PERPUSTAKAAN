@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\ApiBukuController;
+use App\Http\Controllers\API\ApiDataUserController;
 use App\Http\Controllers\API\ApiSessionConntroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ Route::get('/testingajah', function (Request $request) {
 });
 
 // Untuk mendapatkan data buku
-Route::get('/perpusbuku', [ApiBukuController::class, 'index'])->name('/perpusbuku');
+Route::get('/perpus/buku', [ApiBukuController::class, 'index'])->name('/perpusbuku');
 Route::get('/detailbuku/{id}', [ApiBukuController::class, 'details'])->name('/detailbuku');
 
 //Untuk proses login

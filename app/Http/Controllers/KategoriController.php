@@ -52,8 +52,8 @@ class KategoriController extends Controller
         $kategori->kode = $request->kode;
         $kategori->nama = $request->nama;
         $kategori->update();
-
         session()->flash("message-update","Data berhasil diupdate");
+        // dd($kategori->all());
         return redirect("kategori");
     }
 

@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\DataPeminjamanController;
+use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\VerifikasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,11 +79,19 @@ Route::get('/detail/buku/{id}', [BukuController::class, 'detailbuku']);
 //     Route::get('/dashboard/admin', [AdminController::class,'index'])->name('dashboard/admin');
 // });
 
-Route::get('/dashboard/admin', [AdminController::class,'index'])->name('dashboard/admin')->middleware('auth');
+Route::get('/dashboard', [VerifikasiController::class,'index'])->name('dashboard')->middleware('auth');
 // Halaman profile
 Route::get('/halaman-profile', function () {
     return view('profile.profiles');
 });
+
+
+Route::get('admin-page', function() {
+    return 'Halaman untuk Admin';
+})->middleware('role:admin')->name('admin.page');
+
+
+
 
 // Halaman login
 Route::get('/login', [SessionController::class,'index'])->name('login');
@@ -91,18 +102,69 @@ Route::get('/logout', [SessionController::class,'logout'])->name('logout');
 Route::get('/register', [SessionController::class, 'register'])->name('register');
 Route::post('/register-proses', [SessionController::class,'register_proses'])->name('register-proses');
 
+// Histori yang akan dlihat oleh pengguna (user)
+Route::get('/histori', [DataPeminjamanController::class,'index'])->name('/histori');
+
+
+
+
 // Data peminjaman
 Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+Route::post('/peminjaman-proses', [PeminjamanController::class, 'store'])->name('peminjaman-proses');
+Route::get('/peminjaman/{id}', [PeminjamanController::class, 'delete'])->name('peminjaman/{id}');
+
+
+
+
+
 
 // Data pengembalian
 Route::get('/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian');
 
+// Data user yang terdiri dari admin, petugas, dan user itu sendiri
+Route::get('/data/admin', [DataUserController::class, 'index'])->name('/data/admin');
+// Edit data user (admin)
+Route::get('/data/admin/{id}/edit', [DataUserController::class, 'edit_data']);
+// Update data user (admin)
+Route::put('/data/admin/{id}', [DataUserController::class,'update_data']);
+// Hapus data user (admin)
+Route::get('/data/admin/{id}', [DataUserController::class, 'hapus_data'] );
+// Yang untuk mebghapus data dan mengupdate data masih ada bug pada bagian route nya. anomali routenya itu bernama "data" padahal "data" ini seharusnya ada didalam masing function di datausercontroller
+
+// // Role admin
+// Route::group(['middleware' => ['role:admin']], function () {
+//     Route::get('/dashboard', [VerifikasiController::class, 'index'])->name("dashboard");
+//     // tambahkan route lain yang membutuhkan peran admin
+// });
 
 
-Route::get('/data/admin', function () {
-    return view('admin.layoutadmin');
-}
-);
+// // Role petugas
+// Route::group(['middleware' => ['role:petugas']], function () {
+//     Route::get('/dashboard', [VerifikasiController::class, 'index'])->name("dashboard");
+// });
+
+// // Role user
+// Route::group(['middleware' => ['role:user']], function () {
+//     Route::get('/dashboard', [VerifikasiController::class, 'index'])->name("dashboard");
+// });
+
+// Peminjaman
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

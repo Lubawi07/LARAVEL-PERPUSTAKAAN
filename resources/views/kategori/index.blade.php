@@ -70,7 +70,8 @@
                                             @method('delete')
                                             <a href="/kategori/{{ $item->id }}/edit" class="btn btn-warning">
                                                 <i class=" fas fa-solid fa-pen"></i>
-                                                Edit</a>
+                                                Edit
+                                            </a>
                                             <button class="btn btn-danger" type="submit">
                                                 <i class="fas fa-solid fa-trash"></i>
                                                 Hapus</button>

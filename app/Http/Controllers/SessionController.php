@@ -38,7 +38,7 @@ class SessionController extends Controller
        if(Auth::attempt($infologin)){
         // Autentikasi berhasil
         // Session::flash("success-login", "Berhasil Login");
-            return redirect()->route("dashboard/admin")->with("success-login"," Kamu berhasil login");
+            return redirect()->route("dashboard")->with("success-login"," Kamu berhasil login");
        }else{
         // Autentikasi gagal
         return redirect()->route("login")->with("failed","Email atau password salah");
@@ -81,22 +81,27 @@ class SessionController extends Controller
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
 
-        User::create($data);
+        $user = User::create($data);
+        $user->assignRole('user');
+
 
         $login = [
             "email"=> $request->email,
             "password"=> $request->password,
         ];
 
+
+
        if(Auth::attempt($login)){
         // Autentikasi berhasil
         Session::flash("success-register", "Berhasil masuk");
-        // jika diarahkan ke dashboard/admin itu tidak logis maka harus diarahkan ke route login untuk langsung ditest input email beserta passwordnya
-        return redirect()->route("dashboard/admin");
+        // jika diarahkan ke dashboard itu tidak logis maka harus diarahkan ke route login untuk langsung ditest input email beserta passwordnya
+        return redirect()->route("dashboard");
        }else{
         // Autentikasi gagal
         return redirect()->route("login")->with("failed","Email atau password salah");
        }
+
 
     }
 }

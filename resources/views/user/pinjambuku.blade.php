@@ -10,8 +10,9 @@
                 </div>
                 <div class="modal-body">Apa kamu yakin ingin meminjam buku ini ?</div>
                 <div class="modal-footer">
+                    <form action=""></form>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Tidak</button>
-                    <a class="btn btn-success" href="">Ya</a>
+                    <button class="btn btn-success" type="submit">Ya</button>
                 </div>
             </div>
         </div>

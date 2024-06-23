@@ -68,7 +68,7 @@
                                         <td> <img src="{{ asset('bukuperpus/' . $item->gambar) }}" alt="Gambar Buku" style="max-width: 100px;"></td>
                                         <td>{{ $item->kode }}</td>
                                         <td>{{ $item->judul }}</td>
-                                        <td>{{ $item->kategori_id }}</td>
+                                        <td>{{ $item->kategori_id}}</td>
                                         <td>{{ $item->penerbit}}</td>
                                         <td>{{ $item->isbn }}</td>
                                         <td>{{ $item->pengarang }}</td>
@@ -92,7 +92,6 @@
                                             </div>
                                             </form>
                                             </td>
-
                                     </tr>
                                     @endforeach
                                     </tbody>
